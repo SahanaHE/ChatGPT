@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="ef48b94c-45f0-4e28-8eec-3dbea338697a" >
+		<http:listener-connection host="0.0.0.0" port="8082" />
+	</http:listener-config>
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="5b359486-8938-4e7d-8a26-345b6a150fc9" >
+		<http:request-connection protocol="HTTPS" host="api.openai.com" />
+		<http:default-headers >
+			<http:default-header key="Authorization" value="Bearer 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" />
+		</http:default-headers>
+	</http:request-config>
+	<flow name="chatgptFlow" doc:id="0de2d030-10bd-4806-a7a7-19870e3f110d" >
+		<http:listener doc:name="Listener" doc:id="9b2af8ac-ed70-4d68-bf96-dd5a1fdeedf9" config-ref="HTTP_Listener_config" path="/chatgpt"/>
+		<logger level="INFO" doc:name="start Logger" doc:id="65d70e77-a4fb-4788-8deb-7ffd4592c649" message="project is started"/>
+		<http:request method="POST" doc:name="chatGPT completion Request connector" doc:id="89509943-6ee9-43ec-a132-e92ece48dafe" config-ref="HTTP_Request_configuration" path="/v1/chat/completions"/>
+		<logger level="INFO" doc:name="end Logger" doc:id="e77ef5a6-d1b6-4187-b1b0-17a378421593" message="#[payload]"/>
+	</flow>
+</mule>
