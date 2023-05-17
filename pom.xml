@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.mycompany</groupId>
@@ -31,7 +33,26 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
-					<classifier>---- select project type ----</classifier>
+					<cloudHubDeployment>
+						<uri>https://anypoint.mulesoft.com</uri>
+						<muleVersion>4.4.0</muleVersion>
+						<username>Ammu7993</username>
+						<password>Ammu7993</password>
+						<applicationName>ChatGPT-test-api</applicationName>
+						<environment>test</environment>
+						<region>us-east-1</region>
+						<workers>1</workers>
+						<workerType>MICRO</workerType>
+						<properties>
+							<http.port>8081</http.port>
+							<env>test</env>
+							<api.id>18678535</api.id>
+							<anypoint.platform.client_id>d4f485f0e00d4b749288590ff1c9656a</anypoint.platform.client_id>
+							<anypoint.platform.client_secret>63bECF6E449b4274aAd18900C1f13761</anypoint.platform.client_secret>
+							<anypoint.platform.base_uri>https://anypoint.mulesoft.com</anypoint.platform.base_uri>
+							<anypoint.platform.analytics_base_uri>https://analytics-ingest.eu1.anypoint.mulesoft.com</anypoint.platform.analytics_base_uri>
+						</properties>
+					</cloudHubDeployment>
 				</configuration>
 			</plugin>
 			<plugin>
